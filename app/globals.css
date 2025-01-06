@@ -2,20 +2,167 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  --background: #ffffff;
+  --background: #f3f3f3;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f3f3f3;
+    --foreground: #231212;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+@layer base {
+  /* Small device styles */
+  h1 {
+    @apply text-h1-sm font-primary;
+  }
+  h2 {
+    @apply text-h2-sm font-primary;
+  }
+  h3 {
+    @apply text-h3-sm font-primary;
+  }
+  h4 {
+    @apply text-h4-sm font-primary;
+  }
+  h5 {
+    @apply text-h5-sm font-primary;
+  }
+  h6 {
+    @apply text-h6-sm font-primary;
+  }
+  p {
+    @apply text-p-sm font-primary;
+  }
+
+  /* Responsive adjustments for medium screens */
+  @media (min-width: 600px) {
+    h1 {
+      @apply text-h1-md font-primary;
+    }
+    h2 {
+      @apply text-h2-md font-primary;
+    }
+    h3 {
+      @apply text-h3-md font-primary;
+    }
+    h4 {
+      @apply text-h4-md font-primary;
+    }
+    h5 {
+      @apply text-h5-md font-primary;
+    }
+    h6 {
+      @apply text-h6-md font-primary;
+    }
+    p {
+      @apply text-p-md font-primary;
+    }
+  }
+
+  /* Responsive adjustments for larger screens */
+  @media (min-width: 900px) {
+    h1 {
+      @apply text-h1-lg font-primary;
+    }
+    h2 {
+      @apply text-h2-lg font-primary;
+    }
+    h3 {
+      @apply text-h3-lg font-primary;
+    }
+    h4 {
+      @apply text-h4-lg font-primary;
+    }
+    h5 {
+      @apply text-h5-lg font-primary;
+    }
+    h6 {
+      @apply text-h6-lg font-primary;
+    }
+    p {
+      @apply text-p-lg font-primary;
+    }
+  }
+
+  /* Secondary typography (optional) */
+  h1.secondary {
+    @apply text-h1-sm font-secondary;
+  }
+  h2.secondary {
+    @apply text-h2-sm font-secondary;
+  }
+  h3.secondary {
+    @apply text-h3-sm font-secondary;
+  }
+  h4.secondary {
+    @apply text-h4-sm font-secondary;
+  }
+  h5.secondary {
+    @apply text-h5-sm font-secondary;
+  }
+  h6.secondary {
+    @apply text-h6-sm font-secondary;
+  }
+  p.secondary {
+    @apply text-p-sm font-secondary;
+  }
+
+  @media (min-width: 600px) {
+    h1.secondary {
+      @apply text-h1-md font-secondary;
+    }
+    h2.secondary {
+      @apply text-h2-md font-secondary;
+    }
+    h3.secondary {
+      @apply text-h3-md font-secondary;
+    }
+    h4.secondary {
+      @apply text-h4-md font-secondary;
+    }
+    h5.secondary {
+      @apply text-h5-md font-secondary;
+    }
+    h6.secondary {
+      @apply text-h6-md font-secondary;
+    }
+    p.secondary {
+      @apply text-p-md font-secondary;
+    }
+  }
+
+  @media (min-width: 900px) {
+    h1.secondary {
+      @apply text-h1-lg font-secondary;
+    }
+    h2.secondary {
+      @apply text-h2-lg font-secondary;
+    }
+    h3.secondary {
+      @apply text-h3-lg font-secondary;
+    }
+    h4.secondary {
+      @apply text-h4-lg font-secondary;
+    }
+    h5.secondary {
+      @apply text-h5-lg font-secondary;
+    }
+    h6.secondary {
+      @apply text-h6-lg font-secondary;
+    }
+    p.secondary {
+      @apply text-p-lg font-secondary;
+    }
+  }
 }
