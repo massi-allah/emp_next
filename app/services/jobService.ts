@@ -56,7 +56,7 @@ export interface FetchJobsResponse {
 }
 
 // Base URL for the API
-const API_BASE_URL = 'http://192.168.1.139:2500/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Fetch multiple jobs with pagination and filters
 export const fetchJobs = async (
