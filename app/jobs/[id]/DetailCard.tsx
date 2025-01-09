@@ -1,6 +1,3 @@
-import Image from "next/image"
-
-
 interface DetailCardProps {
   title: string;
   body: string;

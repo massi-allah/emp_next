@@ -33,7 +33,7 @@ export default function Home() {
           width={1012}
           height={700}
           alt="nothing"
-          className="absolute object-contain top-0 z-[-10] inset-0 mx-auto h-full w-4/5 scale-200 lg:scale-120"
+          className="absolute object-contain top-0 z-[-10px] inset-0 mx-auto h-full w-4/5 scale-200 lg:scale-120"
         />
         <Image 
             src="/asset/DecorativeCardJobFloating1.svg"
@@ -47,7 +47,7 @@ export default function Home() {
             height={40}
             width={158}
             alt="nothing"
-            className="absolute lg:top-[45vh] sm:top-[12vh] lg:right-[10vw] sm:right-[-48] object-contain mb-16 h-fit"
+            className="absolute lg:top-[45vh] sm:top-[12vh] lg:right-[10vw] sm:right-[-48px] object-contain mb-16 h-fit"
           />
         <Image 
           src="/asset/DecorativeCardJobFloating3.svg"
@@ -60,27 +60,27 @@ export default function Home() {
         <div className="flex flex-col gap-40" data-aos="fade-up">
 
           <div className="flex flex-col">
-            <div className="relative w-fit lg:my-[-10] ps-[68px]">
+            <div className="relative w-fit lg:my-[-10px] ps-[68px]">
               <h2 className="font-Righteous lg:text-[80px]">Find</h2>
               <Image 
                 src="/asset/Decorative Card2.svg"
                 height={122}
                 width={40}
                 alt="nothing"
-                className="absolute object-contain bottom-0 lg:right-[-48] sm:right-[-32] mb-16 h-full"
+                className="absolute object-contain bottom-0 lg:right-[-48px] sm:right-[-32px] mb-16 h-full"
               />
             </div>
-            <div className="relative lg:my-[-10]">
+            <div className="relative lg:my-[-10px]">
               <h2 className="font-Righteous lg:text-[80px]">the best</h2>
               <Image 
                 src="/asset/Decorative Card4.svg"
                 height={122}
                 width={40}
                 alt="nothing"
-                className="absolute object-contain bottom-0 lg:left-[-48] sm:left-[-32] lg:mb-16 sm:mb-8 h-full"
+                className="absolute object-contain bottom-0 lg:left-[-48px] sm:left-[-32px] lg:mb-16 sm:mb-8 h-full"
               />
             </div>
-            <div className="relative lg:my-[2] ps-[35px] ">
+            <div className="relative lg:my-[2px] ps-[35px] ">
               <h2 className="font-Righteous lg:text-[80px] text-white rounded-[28px] bg-green px-24 py-8">
                 Vacancies
               </h2>
@@ -89,17 +89,17 @@ export default function Home() {
                 height={200}
                 width={50}
                 alt="nothing"
-                className="absolute object-contain bottom-0 right-[-10] lg:mb-48 sm:mb-32 h-full"
+                className="absolute object-contain bottom-0 right-[-10px] lg:mb-48 sm:mb-32 h-full"
               />
             </div>
-            <div className="relative lg:my-[-10]">
+            <div className="relative lg:my-[-10px]">
               <h2 className="font-Righteous lg:text-[80px]">with ease.</h2>
               <Image 
                 src="/asset/Decorative Card3.svg"
                 height={122}
                 width={40}
                 alt="nothing"
-                className="absolute object-contain bottom-0  lg:left-[-40] lg:mb-16 sm:left-[-24]  sm:mb-8  h-full"
+                className="absolute object-contain bottom-0  lg:left-[-40px] lg:mb-16 sm:left-[-24px]  sm:mb-8  h-full"
               />
             </div>
           </div>

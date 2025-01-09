@@ -41,7 +41,7 @@ export default function JobCard({ title, post_time, salary, org_name, org_logo, 
         </div>
         <p className="font-secondary lg:text-sm-lg sm:text-sm-sm">{location}</p>
       </div>
-      <div className="absolute right-[-10] bottom-[-10]">
+      <div className="absolute right-[-10px] bottom-[-10px]">
         <Link href={link ?? "/"} className="flex w-fit px-16 py-8 bg-primary-500 fill-white hover:bg-primary-600 rounded-button-pill border-13 border- border-background">
           <Image 
             src="/icons/hugeicons_link-circle white.svg"

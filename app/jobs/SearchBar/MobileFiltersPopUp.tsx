@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Image from "next/image";
 import Dropdown from "./GenericDropDown";
 
 interface FullScreenPopupProps {
@@ -18,23 +17,31 @@ const FullScreenPopup: React.FC<FullScreenPopupProps> = ({
   setFilters,
   resetFilters,
 }) => {
-  const [selectedFilters, setSelectedFilters] =
-    useState<Record<string, string[]>>(filters);
+  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>(filters);
 
   useEffect(() => {
     setSelectedFilters(filters);
   }, [filters]);
 
   useEffect(() => {
-    if (isOpen) {
+    if (typeof window !== "undefined" && isOpen) {
       document.body.style.overflow = "hidden";
-    } else {
+    } else if (typeof window !== "undefined") {
       document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = "auto";
+      if (typeof window !== "undefined") {
+        document.body.style.overflow = "auto";
+      }
     };
   }, [isOpen]);
+
+  // Render only on the client-side
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  
 
   // Options for filters
   const locationSuggestions = [
@@ -94,23 +101,6 @@ const FullScreenPopup: React.FC<FullScreenPopupProps> = ({
     "Education",
     "Nurse",
   ];
-
-  const handleFilterChange = (category: string, value: string) => {
-    setSelectedFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters };
-      if (!updatedFilters[category]) {
-        updatedFilters[category] = [];
-      }
-      if (updatedFilters[category]?.includes(value)) {
-        updatedFilters[category] = updatedFilters[category]?.filter(
-          (item) => item !== value
-        );
-      } else {
-        updatedFilters[category]?.push(value);
-      }
-      return updatedFilters;
-    });
-  };
 
   return ReactDOM.createPortal(
     <div>

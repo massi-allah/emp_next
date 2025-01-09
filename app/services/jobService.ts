@@ -2,17 +2,35 @@ import axios from 'axios';
 
 // Define the types for job data and filters
 export interface Job {
+  job_id: string;
+  translations: any;
   id: string;
   title: string;
   description: string;
   company: string;
   location: string;
-  salary_min?: number;
-  salary_max?: number;
   employment_type?: string;
   category?: string;
-  // Add other job properties as needed
+  organization: string;
+  organization_name: string;
+  created_date: string;
+  close_date: string;
+  gender: string;
+  salary: string;
+  vacancy_number: string;
+  no_of_jobs: string;
+  contract_duration: string;
+  nationality: string;
+  language: string;
+  job_requirements?: string;
+  education?: string;
+  years_of_experience?: string;
+  submission_guideline?: string;
+  submission_email?: string;
+  about_organization?: string;
+  translation_language: string;
 }
+
 
 export interface Filters {
   title?: string;
@@ -34,6 +52,7 @@ export interface Filters {
 export interface FetchJobsResponse {
   results: Job[];
   total: number;
+  count: number;
 }
 
 // Base URL for the API
@@ -46,8 +65,8 @@ export const fetchJobs = async (
   filters: Filters = {},
   sortBy = 'created_date'
 ): Promise<FetchJobsResponse> => {
-  const username = 'massiullah';
-  const password = 'abc';
+  const username = process.env.NEXT_PUBLIC_USERNAME
+  const password = process.env.NEXT_PUBLIC_PASSWORD
   const authHeader = `Basic ${btoa(`${username}:${password}`)}`;
 
   try {
@@ -87,8 +106,8 @@ export const fetchJobs = async (
 
 // Fetch a single job's details by ID
 export const fetchJob = async (id: string): Promise<Job> => {
-  const username = 'massiullah';
-  const password = 'abc';
+  const username = process.env.NEXT_PUBLIC_USERNAME
+  const password = process.env.NEXT_PUBLIC_PASSWORD
   const authHeader = `Basic ${btoa(`${username}:${password}`)}`;
 
   try {

@@ -1,8 +1,6 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { Interface } from "readline";
 
 interface JobCategoryCardSmallProps {
   title: string;

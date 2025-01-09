@@ -7,7 +7,7 @@ export default function Footer(){
     return (
         <footer className="flex flex-col gap-8 sm:p-16 md:p-40 lg:px-64 lg:py-16 w-screen" data-aos="fade-up">
             <div className="flex flex-col  md:gap-80 sm:gap-40  bg-primary-700 text-white sm:px-16 sm:py-40 md:p-64 lg:p-80 rounded-[8px]">
-                <h2 className="secondary font-bold">Let's Connect</h2>
+                <h2 className="secondary font-bold">Let&apos;s Connect</h2>
                 <div className="flex gap-80 lg:flex-row sm:flex-col sm:gap-40">
                     <div className="flex flex-col gap-24">
                         <div className="flex items-center gap-8">

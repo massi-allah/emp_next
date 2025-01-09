@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image"
-import Button from "../components/Buttons/PrimaryButton"
 import FeatureCardSmall from "../components/Cards/FeatureCardSmall"
 
 import AOS from 'aos';

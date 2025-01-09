@@ -8,28 +8,16 @@ import SearchForm from './SearchBar/SearchBar';
 import SortByDropdown from '../components/SortbyCom';
 import Pagination from './SearchBar/PageNavigation';
 
-import { fetchJobs } from '../services/jobService';  // Import the fetchJobs function
+import { fetchJobs, Job } from '../services/jobService';  // Import the fetchJobs function
 
 
-interface JobType {
-  job_id: string;
-  title: string;
-  created_date: string;
-  salary: string;
-  organization: string;
-  location: string;
-}
 
 interface FiltersType {
   title: string;
   category_names: string[];
   organization: string;
   employment_type: string;
-  salary_min: string;
-  salary_max: string;
   location: string;
-  years_of_experience_min: string;
-  years_of_experience_max: string;
   education: string;
   gender: string;
   close_date_before: string;
@@ -41,11 +29,7 @@ const defaultFilters: FiltersType = {
   category_names: [],
   organization: '',
   employment_type: '',
-  salary_min: '',
-  salary_max: '',
   location: '',
-  years_of_experience_min: '',
-  years_of_experience_max: '',
   education: '',
   gender: '',
   close_date_before: '',
@@ -55,7 +39,7 @@ const defaultFilters: FiltersType = {
 const JobsPage = () => {
   const [sortBy, SetSortBy] = useState<string>('-created_date');
   const [filters, setFilters] = useState<typeof defaultFilters>(defaultFilters);
-  const [jobs, setJobs] = useState<JobType[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -94,7 +78,7 @@ const JobsPage = () => {
         const jobsData = await fetchJobs(currentPage, jobsPerPage, filters, sortBy);  // Fetch the job data
         setJobs(jobsData.results);  // Update state with the fetched jobs
         setTotalJobs(jobsData.count);  // Update jobsData.count number of jobs
-      } catch (err) {
+      } catch {
         setError('Failed to load jobs');  // Handle any error
       } finally {
         setLoading(false);  // Stop loading once the data is fetched

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 interface DropdownProps {
   value: string[]; // Selected values
-  setValue: (value: string[]) => void; // Update selected values
+  setValue: (value: string[] | string) => void; // Update selected values
   options: string[]; // List of options
   placeholder: string;
   iconSrc: string;
@@ -128,7 +128,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               onClick={() => handleSelect(inputValue)}
               className="px-4 py-2 text-gray-500 hover:bg-gray-100 cursor-pointer italic"
             >
-              Add "{inputValue}"
+              Add &quot;{inputValue}&quot;
             </li>
           )}
         </ul>

@@ -1,9 +1,5 @@
 "use client";
 import Image from "next/image";
-import { GetServerSideProps } from 'next';
-import SortByDropdown from "@/app/components/SortbyCom";
-import Link from "next/link";
-import Button from "@/app/components/Buttons/PrimaryButton";
 import JobCard from "@/app/components/Cards/JobCard";
 import DetailCard from "./DetailCard";
 import MiniCard from "./MiniDetailCard";
@@ -11,16 +7,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { useEffect, useState, use } from "react";
 import { fetchJob, Job, fetchJobs } from '../../services/jobService';  // Import the fetchJobs function
-import { log } from "console";
-
-interface JobType {
-  job_id: string;
-  title: string;
-  created_date: string;
-  salary: string;
-  organization: string;
-  location: string;
-}
 
 
 interface FiltersType {
@@ -28,11 +14,7 @@ interface FiltersType {
   category_names: string[];
   organization: string;
   employment_type: string;
-  salary_min: string;
-  salary_max: string;
   location: string;
-  years_of_experience_min: string;
-  years_of_experience_max: string;
   education: string;
   gender: string;
   close_date_before: string;
@@ -44,11 +26,7 @@ const defaultFilters: FiltersType = {
   category_names: [],
   organization: '',
   employment_type: '',
-  salary_min: '',
-  salary_max: '',
   location: '',
-  years_of_experience_min: '',
-  years_of_experience_max: '',
   education: '',
   gender: '',
   close_date_before: '',
@@ -88,7 +66,7 @@ const LanguageDropdown = ({ options, onSelect, currentLanguage }) => {
 
 
 
-export default function JobView({ params }: { params: Promise<{ job: string }> }) {
+export default function JobView({ params }: { params: Promise<{ job: string, id: string }> }) {
   const { id: initialId } = use(params); // Initial ID from params
   const [id, setId] = useState<string>(initialId || ""); // State for managing ID
   const [language, setLanguage] = useState<string>("English"); // State for language selection
@@ -105,9 +83,9 @@ export default function JobView({ params }: { params: Promise<{ job: string }> }
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [job, setJob] = useState<Job | null>(null);
-  const [jobs, setJobs] = useState<JobType[]>([]);
-  const [filters, setFilters] = useState<typeof defaultFilters>(defaultFilters);
-  const [sortBy, SetSortBy] = useState<string>('-created_date');
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [filters] = useState<typeof defaultFilters>(defaultFilters);
+  const [sortBy] = useState<string>('-created_date');
 
   const jobsPerPage = 20;
   
@@ -140,7 +118,7 @@ export default function JobView({ params }: { params: Promise<{ job: string }> }
             const jobsData = await fetchJobs(1, jobsPerPage, { ...filters, category_names: [jobData.category] }, sortBy);
             setJobs(jobsData.results);
           }
-        } catch (err) {
+        } catch {
           setError("Error fetching job data");
         } finally {
           setLoading(false); // Set loading to false when done
@@ -154,6 +132,7 @@ export default function JobView({ params }: { params: Promise<{ job: string }> }
 
 
   const handleLanguageChange = (value: string) => {
+    console.log(language);
     setLanguage(value); // Update the selected language
     const newId = translations[value]; // Get the translated job ID based on selected language
     console.log(newId);
@@ -172,10 +151,11 @@ export default function JobView({ params }: { params: Promise<{ job: string }> }
       {!loading && !error && job && ( 
       <div className="">
         <div className="flex justify-between py-16" data-aos='fade-down'>
-          <Link href={'/'} className="flex items-center justify-center gap-10">
+          {/* <Link href={'/'} className="flex items-center justify-center gap-10">
             <Image src="/icons/lets-icons_back.svg" height={24} width={24} alt="/" />
             <p>Back to Listings</p>
-          </Link>
+          </Link> */}
+          <div className="c"></div> {/* Remove when the back button is active */}
           <div className="flex justify-between">
           <LanguageDropdown
             options={Object.keys(translations)} 
@@ -195,9 +175,9 @@ export default function JobView({ params }: { params: Promise<{ job: string }> }
                   <div className="flex flex-col gap-16">
                     <h6>About {job.organization}</h6>
                     <div className="flex gap-4 flex-col">
-                      <p className="secondary"><strong>Founder: </strong>{job.organization.founder || "Uknown"}</p>
+                      {/* <p className="secondary"><strong>Founder: </strong>{job.organization.founder || "Uknown"}</p>
                       <p className="secondary"><strong>Founded on: </strong>{job.organization.creation_date || "Unknown"}</p>
-                      <p className="secondary"><strong>Base: </strong>{job.organization.location || "Unknown"}</p>
+                      <p className="secondary"><strong>Base: </strong>{job.organization.location || "Unknown"}</p> */}
                     </div>
                   </div>
                 </div>
