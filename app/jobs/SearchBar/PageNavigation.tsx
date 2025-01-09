@@ -35,20 +35,22 @@ const Pagination: React.FC<PaginationProps> = ({
         />
       </button>
 
-      {/* Page Number Buttons */}
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-        <button
-          key={page}
-          onClick={() => handlePageChange(page)}
-          className={`flex justify-center items-center px-16 mx-1 font-bold text-black rounded-button-pill aspect-square ${
-            page === currentPage
-              ? "bg-primary-600 text-white"
-              : "bg-white text-black"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
+      <div className="flex felx-row max-w-[300px] overflow-x-scroll">
+        {/* Page Number Buttons */}
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`flex justify-center items-center px-16 mx-1 font-bold text-black rounded-button-pill aspect-square ${
+              page === currentPage
+                ? "bg-primary-600 text-white"
+                : "bg-white text-black"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
 
       {/* Next Button */}
       <button
