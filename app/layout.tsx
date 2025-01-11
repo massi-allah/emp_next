@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Quicksand } from "next/font/google";
 import { Roboto } from "next/font/google";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
