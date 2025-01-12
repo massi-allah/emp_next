@@ -110,7 +110,7 @@ module.exports = {
       },
       screens: {
         'sm': '100px',   // Mobile devices (375px)
-        'md': '430px',   // Tablets (744px)
+        'md': '744px',   // Tablets (744px)
         'lg': '1000px',  // Desktop (1440px)
       },
     },
