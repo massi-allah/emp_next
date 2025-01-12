@@ -22,6 +22,7 @@ interface FiltersType {
   gender: string;
   close_date_before: string;
   close_date_after: string;
+  translation_language: string,
 }
 
 const defaultFilters: FiltersType = {
@@ -34,6 +35,7 @@ const defaultFilters: FiltersType = {
   gender: '',
   close_date_before: '',
   close_date_after: '',
+  translation_language: 'en',
 };
 
 const JobsPage = () => {

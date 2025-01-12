@@ -26,6 +26,7 @@ export const fetchJobs = async (page = 1, limit = 6, filters = {}, sortBy = 'cre
       gender: filters.gender || '',
       close_date_before: filters.close_date_before || '',
       close_date_after: filters.close_date_after || '',
+      translation_language: filters.translation_language || '',
     };
 
     const response = await axios.get(`${API_BASE_URL}/jobs/`, {
