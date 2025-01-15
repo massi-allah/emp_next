@@ -17,7 +17,7 @@ interface JobCardProps {
 
 export default function JobCard({ title, post_time, salary, org_name, org_logo, location, link, animation}: JobCardProps) {
   return (
-    <div className="relative flex flex-col justify-start items-start gap-16 p-40 mn-w-[250px] max-w-[350px] object-contain bg-white rounded-2xl" data-aos={animation ?? 'fade-left'}>
+    <div className="relative flex flex-col justify-start items-start gap-16 p-40 mn-w-[250px] max-w-[370px] object-contain bg-white rounded-2xl" data-aos={animation ?? 'fade-left'}>
       {/* Title */}
       <h5 className="w-full truncate">{title}</h5>
 
