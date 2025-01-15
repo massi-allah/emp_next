@@ -140,7 +140,7 @@ export default function SearchForm({ filters, setFilters, resetFilters }) {
           options={categories} // Options for categories
           placeholder="Category"
           iconSrc="/icons/nrk_category-active.svg"
-          isMultiSelect={true}
+          isMultiSelect={false}
         />
         {/* Gender Dropdown */}
         <Dropdown

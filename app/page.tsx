@@ -10,7 +10,8 @@ import Button from "./components/Buttons/PrimaryButton";
 import FAQSection from "./components/Cards/FAQSection";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { fetchJobs, Job } from './services/jobService';  // Import the fetchJobs function
 
 
 
@@ -24,6 +25,46 @@ export default function Home() {
       once: true,
     });
   }, []);  
+
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+
+  // This effect should always be the same and not conditional
+    useEffect(() => {
+      const loadJobs = async () => {
+        try {
+          setLoading(true); // Start loading
+          const jobsData = await fetchJobs(
+            1, 
+            9,
+            {
+            title: '',
+            category_names: [],
+            organization: '',
+            employment_type: '',
+            location: '',
+            education: '',
+            gender: '',
+            close_date_before: '',
+            close_date_after: '',
+            translation_language: 'en',
+          }, 
+          '-created_date'
+        );  
+        
+        // Fetch the job data
+          setJobs(jobsData.results);  // Update state with the fetched jobs
+        } catch {
+          setError('Failed to load jobs');  // Handle any error
+        } finally {
+          setLoading(false);  // Stop loading once the data is fetched
+        }
+      };
+  
+      loadJobs();  // Call the async function inside useEffect
+    }, []);  // Re-run when currentPage changes
 
   return (
     <div>
@@ -167,15 +208,28 @@ export default function Home() {
         <h4 className="font-bold">Featured Jobs</h4>
         <Button color="primary" radius="pill" size="small" icon cssClass="font-bold" link="/jobs">Explore</Button>
       </div>
-      <div className="flex md:gap-24 sm:gap-16 overflow-x-scroll overflow-y-hidden h-fit">
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-        <JobCard title="Finance Officer" post_time="03 Days Ago" salary="10k" org_name="Google" org_logo="/icons/devicon_google.svg" location="Balkh Afghanistan" link="/"  />
-      </div>
+        {/* Move loading and error states inside the jobs section */}
+        {loading && <div>Loading...</div>}
+        {error && <div>{error}</div>}
+
+        {/* Render jobs only when data is available */}
+        {!loading && !error && (
+          <div className="flex gap-8 overflow-x-scroll overflow-y-hidden h-fit">
+            {Array.isArray(jobs) && jobs.map((job, index) => (
+              <JobCard
+                key={index}
+                title={job.title}
+                post_time={job.created_date}
+                salary={job.salary}
+                org_name={job.organization}
+                org_logo={'/icons/bxs_category-alt.svg'}
+                location={job.location}
+                link={`jobs/${job.job_id}`}  // Assuming `job.id` is the unique identifier
+                animation="fade-up"
+              />
+            ))}
+          </div>
+        )}
     </div>
     
     <div className="relative flex md:p-64 sm:px-16 sm:py-40 gap-24 w-full mt-[140px]">
